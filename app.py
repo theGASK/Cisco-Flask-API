@@ -5,14 +5,23 @@ app  =Flask(__name__)
 api = Api(app)
 
 # Resource class to handle requests
+# Resource object needs to be ALWAYS serializable (JSON format)
+messages = {'Cisco': {'Interview': 1, 'Role': 'Python Developer'},
+            'Webex': {'Interview': 2, 'Role': 'Flask Developer'},
+            'Zensar': {'Interview': 3, 'Role': 'RESTful Developer'}}
+
 class Test(Resource):
-    def get(self):
-        return {'data': 'Stand by for a test'}
-# get resource needs always needs to be serializable
+    def get(self, message):
+        return messages[message]
 
-api.add_resource(Test, "/test")
-# Root of the resource and where it is accessible
+    # def post(self):
+    #      return {'message': message}
 
- #REMOVE True in production!
+# Root of the resource, where it is accessible and content
+
+api.add_resource(Test, "/test/<string:message>")
+
+#REMOVE True in production!
+
 if __name__ == "__main__":
     app.run(debug=True)   

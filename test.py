@@ -5,8 +5,9 @@ import requests
 
 BASE = 'http://127.0.0.1:5000/' 
 
-response = requests.get(BASE + 'test')
+r = requests.get(BASE + 'test/Cisco/1')
+r.status_code
 
-response = requests.post(BASE + 'test')
+# response = requests.post(BASE + 'test')
 
-print(response.json()) 
+print(r.json()) 
