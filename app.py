@@ -7,10 +7,12 @@ api = Api(app)
 # Resource class to handle requests
 class Test(Resource):
     def get(self):
-        return {'Stand by for a test'}
+        return {'data': 'Stand by for a test'}
+# get resource needs always needs to be serializable
 
-api.add_resource(Test, "/test") # Root of the resource and where it is accessible
+api.add_resource(Test, "/test")
+# Root of the resource and where it is accessible
 
+ #REMOVE True in production!
 if __name__ == "__main__":
-    app.run(debug=True)    #REMOVE True in production!
-
+    app.run(debug=True)   
