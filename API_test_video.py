@@ -2,6 +2,7 @@ import requests
 
 BASE = 'http://127.0.0.1:5000/' 
 
-r = requests.get(BASE + 'test/Webex')
+# r = requests.get(BASE + 'Video_Streaming/1')
+r = requests.put(BASE + 'Video_Streaming/1', {'Participants': 1})
 
 print(r.json()) 
