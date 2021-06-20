@@ -13,21 +13,34 @@ video_put_args.add_argument('spectators', type=int, help='Number of spectators i
 
 videos = {}
 
-def video_not_found(video_id):
+def video_exists(video_id):
+    if video_id in videos:
+        abort(409, message='Video already exists')
+
+def video_404(video_id):
     if video_id not in videos:
         abort(404, message='Video is not found')
 
 
 class Video_Stream(Resource):
     def get(self, video_id):
-        video_not_found(video_id)
+        video_404(video_id)
         return videos[video_id]
 
     
     def put(self, video_id):
+        video_exists(video_id)
         args = video_put_args.parse_args()
         videos[video_id] = args
         return videos[video_id], 201
+
+
+    def delete(self, video_id):
+        video_404(video_id)
+        del videos[video_id]
+        return 'Video deleted', 204
+
+
 
 
 api.add_resource(Video_Stream, "/Video_Streaming/<int:video_id>")
