@@ -5,8 +5,8 @@ import requests
 
 BASE = 'http://127.0.0.1:5000/' 
 
-r = requests.get(BASE + 'test/Cisco/1')
-r.status_code
+r = requests.get(BASE + 'test/Webex')
+# r.status_code
 
 # response = requests.post(BASE + 'test')
 

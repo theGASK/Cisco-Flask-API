@@ -7,8 +7,8 @@ api = Api(app)
 # Resource class to handle requests
 # Resource object needs to be ALWAYS serializable (JSON format)
 messages = {'Cisco': {'Interview': 1, 'Role': 'Python Developer'},
-            'Webex': {'Interview': 2, 'Role': 'Flask Developer'},
-            'Zensar': {'Interview': 3, 'Role': 'RESTful Developer'}}
+            'Webex': {'Interview': 1, 'Role': 'Flask Developer'},
+            'Zensar': {'Interview': 1, 'Role': 'RESTful Developer'}}
 
 class Test(Resource):
     def get(self, message):
