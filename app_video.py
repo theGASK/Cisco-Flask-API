@@ -7,9 +7,9 @@ app  =Flask(__name__)
 api = Api(app)
 
 video_put_args = reqparse.RequestParser()
-video_put_args.add_argument('room', type=str, help='Name of the room')
-video_put_args.add_argument('participant', type=str, help='Name of the participant')
-video_put_args.add_argument('spectators', type=int, help='Number of spectators')
+video_put_args.add_argument('room', type=str, help='Name of the room is required', required=True)
+video_put_args.add_argument('participant', type=str, help='Name of the participant is required', required=True)
+video_put_args.add_argument('spectators', type=int, help='Number of spectators is required', required=True)
 
 videos = {}
 
@@ -19,7 +19,8 @@ class Video_Stream(Resource):
     
     def put(self, video_id):
         args = video_put_args.parse_args()
-        return {video_id: args}
+        videos[video_id] = args
+        return videos[video_id], 201
 
 
 api.add_resource(Video_Stream, "/Video_Streaming/<int:video_id>")
